@@ -12,6 +12,20 @@ class FakeInfo {
     public const GENDER_FEMININE = 'F';
     public const GENDER_MASCULINE = 'M';
     private const FILE_PERSON_NAMES = 'data/person-names.json';
+    // private const PHONE_PREFIXES = [
+    //     2, 30, 31, 40, 41, 42, 50, 51, 52, 53, 60, 61, 71, 81, 91, 92, 93, 342, 344, 345, 346, 347, 348, 349, 356, 357, 
+    //     359, 362, 365, 366, 389, 398, 431, 441, 462, 466, 468, 472, 474, 476, 478, 485, 486, 488, 489, 493, 494, 495, 496, 
+    //     498, 499, 542, 543, 545, 551, 552, 556, 571, 572, 573, 574, 577, 579, 584, 586, 587, 589, 597, 598, 627, 629, 
+    //     641, 649, 658, 662, 663, 664, 665, 667, 692, 693, 694, 697, 771, 772, 782, 783, 785, 786, 788, 789, 826, 827, 829
+    // ];
+    private const PHONE_PREFIXES = [
+        '2', '30', '31', '40', '41', '42', '50', '51', '52', '53', '60', '61', '71', '81', '91', '92', '93', '342', 
+        '344', '345', '346', '347', '348', '349', '356', '357', '359', '362', '365', '366', '389', '398', '431', 
+        '441', '462', '466', '468', '472', '474', '476', '478', '485', '486', '488', '489', '493', '494', '495', 
+        '496', '498', '499', '542', '543', '545', '551', '552', '556', '571', '572', '573', '574', '577', '579', 
+        '584', '586', '587', '589', '597', '598', '627', '629', '641', '649', '658', '662', '663', '664', '665', 
+        '667', '692', '693', '694', '697', '771', '772', '782', '783', '785', '786', '788', '789', '826', '827', '829'
+    ];
 
     private string $cpr;    
     private string $firstName;
@@ -19,14 +33,14 @@ class FakeInfo {
     private string $gender;
     private string $birthDate;
     private array $address = [];
-    private string $phone = '';  
+    private string $phone;  
 
     public function __construct()
     {
         $this->setFullNameAndGender();
         $this->setBirthDate();
         $this->setCpr();
-
+        $this->setPhone();
     }
     
     /**
@@ -51,9 +65,9 @@ class FakeInfo {
         $this->cpr = substr($this->birthDate, 8, 2) . 
             substr($this->birthDate, 5, 2) .
             substr($this->birthDate, 2, 2) .
-            mt_rand(0, 9) .
-            mt_rand(0, 9) .
-            mt_rand(0, 9) .
+            self::getRandomDigit() .
+            self::getRandomDigit() .
+            self::getRandomDigit() .
             $finalDigit;
     }
 
@@ -83,11 +97,26 @@ class FakeInfo {
     private function setFullNameAndGender(): void
     {
         $names = json_decode(file_get_contents(self::FILE_PERSON_NAMES), true);
-        $person = $names['persons'][mt_rand(0, count($names['persons']))];
+        $person = $names['persons'][mt_rand(0, count($names['persons']) - 1)];
         
         $this->firstName = $person['firstName'];
         $this->lastName = $person['lastName'];
         $this->gender = ($person['gender'] === 'female' ? self::GENDER_FEMININE : self::GENDER_MASCULINE);
+    }
+
+    /**
+     * Generates a fake Danish phone number
+     * - The phone number must start with a prefix in self::PHONE_PREFIXES
+     */
+    private function setPhone(): void
+    {
+        $phone = self::PHONE_PREFIXES[mt_rand(0, count(self::PHONE_PREFIXES) - 1)];
+        $prefixLength = strlen($phone);
+        for ($index = 0; $index < (8 - $prefixLength); $index++) {
+            $phone .= self::getRandomDigit();
+        }
+
+        $this->phone = $phone;
     }
 
     /**
@@ -129,5 +158,44 @@ class FakeInfo {
             'gender' => $this->gender,
             'birthDate' => $this->birthDate
         ];
+    }
+
+    /**
+     * Returns a fake Danish phone number
+     * 
+     * @return string The fake phone number
+     */
+    public function getPhoneNumber(): string
+    {
+        return $this->phone;
+    }
+
+    /** 
+     * Returns information about several fake persons
+     * 
+     * @param $amount The number of fake persons to generate, between 2 and 200 inclusive
+     * @return array The fake information
+     */
+    public function getFakePersons(int $amount = 2): array {
+        if ($amount < 2) { $amount = 2; }
+        if ($amount > 200) { $amount = 200; }
+
+        for ($index = 0; $index < $amount; $index++) {
+            $fakeInfo = new FakeInfo;
+            $bulkInfo[] = [
+                'CPR' => $fakeInfo->cpr,
+                'firstName' => $fakeInfo->firstName,
+                'lastName' => $fakeInfo->lastName,
+                'gender' => ($fakeInfo->gender === self::GENDER_FEMININE ? 'female' : 'male'),
+                'birthDate' => $fakeInfo->birthDate,
+                'phoneNumber' => $fakeInfo->phone
+            ];
+        }
+        return $bulkInfo;
+    }
+
+    private static function getRandomDigit(): string 
+    {
+        return (string) mt_rand(0, 9);
     }
 }
