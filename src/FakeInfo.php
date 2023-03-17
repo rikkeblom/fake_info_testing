@@ -1,23 +1,18 @@
 <?php
 
 /**
- * Class FakeInfo
+ * Class FakeInfo.
+ * It generates information about fake persons.
+ * 
  * @author  Arturo Mora-Rioja
  * @version 1.0.0 March 2023
  */
 
 class FakeInfo {
 
-    public const DATE_FORMAT = 'd/m/Y';
     public const GENDER_FEMININE = 'F';
     public const GENDER_MASCULINE = 'M';
     private const FILE_PERSON_NAMES = 'data/person-names.json';
-    // private const PHONE_PREFIXES = [
-    //     2, 30, 31, 40, 41, 42, 50, 51, 52, 53, 60, 61, 71, 81, 91, 92, 93, 342, 344, 345, 346, 347, 348, 349, 356, 357, 
-    //     359, 362, 365, 366, 389, 398, 431, 441, 462, 466, 468, 472, 474, 476, 478, 485, 486, 488, 489, 493, 494, 495, 496, 
-    //     498, 499, 542, 543, 545, 551, 552, 556, 571, 572, 573, 574, 577, 579, 584, 586, 587, 589, 597, 598, 627, 629, 
-    //     641, 649, 658, 662, 663, 664, 665, 667, 692, 693, 694, 697, 771, 772, 782, 783, 785, 786, 788, 789, 826, 827, 829
-    // ];
     private const PHONE_PREFIXES = [
         '2', '30', '31', '40', '41', '42', '50', '51', '52', '53', '60', '61', '71', '81', '91', '92', '93', '342', 
         '344', '345', '346', '347', '348', '349', '356', '357', '359', '362', '365', '366', '389', '398', '431', 
@@ -40,6 +35,7 @@ class FakeInfo {
         $this->setFullNameAndGender();
         $this->setBirthDate();
         $this->setCpr();
+        $this->setAddress();
         $this->setPhone();
     }
     
@@ -102,6 +98,55 @@ class FakeInfo {
         $this->firstName = $person['firstName'];
         $this->lastName = $person['lastName'];
         $this->gender = ($person['gender'] === 'female' ? self::GENDER_FEMININE : self::GENDER_MASCULINE);
+    }
+
+    /**
+     * Generates a fake Danish address
+     */
+    private function setAddress(): void
+    {
+        $this->address['street'] = self::getRandomText(40);
+
+        $this->address['number'] = (string) mt_rand(1, 999);
+        // Approx. 20% of Danish addresses includes a letter
+        if (mt_rand(1, 10) < 3) {
+            $this->address['number'] .= strtoupper($this->getRandomText(1, false));
+        }
+
+        // Approx. 30% of Danish addresses are in the ground floor
+        if (mt_rand(1, 10) < 4) {
+            $this->address['floor'] = 'st';
+        } else {
+            $this->address['floor'] = mt_rand(1, 99);
+        }
+        
+    }
+    
+    /**
+     * Returns a random text.
+     * - Only alphabetic characters and the space are allowed
+     * 
+     * @param  int    Length of the text to return (1 by default)
+     * @return string The random text
+     */
+    private static function getRandomText(int $length = 1, bool $includeDanishCharacters = true): string
+    {
+        $validCharacters = [
+            ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 
+            'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 
+            'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 
+            'Y', 'Z'
+        ];
+        if ($includeDanishCharacters) {
+            $validCharacters = array_merge($validCharacters, ['æ', 'ø', 'å', 'Æ', 'Ø', 'Å']);
+        }
+
+        // The first character is chosen from position 1 to avoid the space
+        $text = $validCharacters[mt_rand(1, count($validCharacters) - 1)];
+        for ($index = 1; $index < $length; $index++) {
+            $text .= $validCharacters[mt_rand(0, count($validCharacters) - 1)];
+        }
+        return $text;
     }
 
     /**
@@ -170,6 +215,23 @@ class FakeInfo {
         return $this->phone;
     }
 
+    /**
+     * Returns fake person information 
+     * 
+     * @return array ['CPR' => value, 'firstName' => value, 'lastName' => value, 'gender' => 'female'|'male', 'birthDate' => value, 'phoneNumber' => value]
+     */
+    public function getFakePerson(): array {
+        return [
+            'CPR' => $this->cpr,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'gender' => ($this->gender === self::GENDER_FEMININE ? 'female' : 'male'),
+            'birthDate' => $this->birthDate,
+            'address' => $this->address,
+            'phoneNumber' => $this->phone
+        ];    
+    }
+
     /** 
      * Returns information about several fake persons
      * 
@@ -182,18 +244,16 @@ class FakeInfo {
 
         for ($index = 0; $index < $amount; $index++) {
             $fakeInfo = new FakeInfo;
-            $bulkInfo[] = [
-                'CPR' => $fakeInfo->cpr,
-                'firstName' => $fakeInfo->firstName,
-                'lastName' => $fakeInfo->lastName,
-                'gender' => ($fakeInfo->gender === self::GENDER_FEMININE ? 'female' : 'male'),
-                'birthDate' => $fakeInfo->birthDate,
-                'phoneNumber' => $fakeInfo->phone
-            ];
+            $bulkInfo[] = $fakeInfo->getFakePerson();
         }
         return $bulkInfo;
     }
 
+    /**
+     * Generates a random digit as a string
+     * 
+     * @return string The randomly generated digit
+     */
     private static function getRandomDigit(): string 
     {
         return (string) mt_rand(0, 9);
