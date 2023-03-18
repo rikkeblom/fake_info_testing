@@ -119,7 +119,14 @@ class FakeInfo {
         } else {
             $this->address['floor'] = mt_rand(1, 99);
         }
-        
+
+        // Postal code and town
+        require_once 'Town.php';        
+        $town = new Town;
+        $town = $town->getRandomTown();
+        $this->address['postal_code'] = $town['postal_code'];
+        $this->address['town_name'] = $town['town_name'];        
+        unset($town);
     }
     
     /**
