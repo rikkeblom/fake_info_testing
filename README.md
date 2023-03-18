@@ -3,7 +3,12 @@
 ## Purpose
 Sample PHP class that generates fake data of nonexistent Danish persons.
 
-## Installation
+## Dependencies
+
+- The fake persons' first name, last name, and gender are extracted from the file `data/person-names.json`.
+- The fake persons' postal code and town are extracted from the MariaDB/MySQL database `addresses`.
+
+## Database Installation
 
 1. The script `db/addresses.sql` must be run. It will create the MariaDB/MySQL database `addresses`.
 2. The file `info/info.php` contains default database values. It may be necessary to update it with the database configuration in use.
