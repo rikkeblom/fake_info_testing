@@ -120,6 +120,33 @@ class FakeInfo {
             $this->address['floor'] = mt_rand(1, 99);
         }
 
+        /*
+            The door will be randomly generated based on the following distribution:
+                1-7     35% th
+                8-14    35% tv
+                15-16   10% mf
+                17-18   10% 1-50
+                19      5% lowercase_letter + 1-999
+                20      5% lowercase letter + '-' + 1-999
+        */
+        $doorType = mt_rand(1, 20);
+        if ($doorType < 8) {
+            $this->address['door'] = 'th';
+        } elseif ($doorType < 15) {
+            $this->address['door'] = 'tv';
+        } elseif ($doorType < 17) {
+            $this->address['door'] = 'mf';
+        } elseif ($doorType < 19) {
+            $this->address['door'] = mt_rand(1, 50);
+        } else {
+            $lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyzæøå';
+            $this->address['door'] = $lowerCaseLetters[mt_rand(0, strlen($lowerCaseLetters) - 1)];
+            if ($doorType === 20) {
+                $this->address['door'] .= '-';
+            }
+            $this->address['door'] .= mt_rand(1, 999);
+        }
+
         // Postal code and town
         require_once 'Town.php';        
         $town = new Town;
