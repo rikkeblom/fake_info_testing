@@ -10,8 +10,8 @@
 
 class FakeInfo {
 
-    public const GENDER_FEMININE = 'F';
-    public const GENDER_MASCULINE = 'M';
+    public const GENDER_FEMININE = 'female';
+    public const GENDER_MASCULINE = 'male';
     private const FILE_PERSON_NAMES = 'data/person-names.json';
     private const PHONE_PREFIXES = [
         '2', '30', '31', '40', '41', '42', '50', '51', '52', '53', '60', '61', '71', '81', '91', '92', '93', '342', 
@@ -97,7 +97,7 @@ class FakeInfo {
         
         $this->firstName = $person['firstName'];
         $this->lastName = $person['lastName'];
-        $this->gender = ($person['gender'] === 'female' ? self::GENDER_FEMININE : self::GENDER_MASCULINE);
+        $this->gender = $person['gender'];
     }
 
     /**
@@ -259,7 +259,7 @@ class FakeInfo {
             'CPR' => $this->cpr,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
-            'gender' => ($this->gender === self::GENDER_FEMININE ? 'female' : 'male'),
+            'gender' => $this->gender,
             'birthDate' => $this->birthDate,
             'address' => $this->address,
             'phoneNumber' => $this->phone
