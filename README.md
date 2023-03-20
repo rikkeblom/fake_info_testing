@@ -15,12 +15,17 @@ Sample PHP class that generates fake data of nonexistent Danish persons.
 
 ## Class `FakeInfo` - Public methods
 
-- `getCPR(): string`
-- `getFullNameAndGender(): array`
-- `getFullNameGenderAndBirthDate(): array`
-- `getPhoneNumber(): string`
-- `getFakePerson(): array`
-- `getFakePersons(): array`
+```php
+- getCPR(): string
+- getFullNameAndGender(): array
+- getFullNameGenderAndBirthDate(): array
+- getCprFullNameAndGender(): array
+- getCprFullNameGenderAndBirthDate(): array
+- getAddress(): string
+- getPhoneNumber(): string
+- getFakePerson(): array
+- getFakePersons(int $amount): array
+```
 
 ## Sample Output
 
