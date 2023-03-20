@@ -255,6 +255,22 @@ class FakeInfo {
     }
 
     /**
+     * Returns a fake CPR, full name, gender, and birth date
+     * 
+     * @return array ['CPR' => value, 'firstName' => value, 'lastName' => value, 'gender' => 'female' | 'male', 'birthDate' => value]
+     */
+    public function getCprFullNameGenderAndBirthDate(): array
+    {
+        return [
+            'CPR' => $this->cpr,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'gender' => $this->gender,
+            'birthDate' => $this->birthDate
+        ];
+    }
+
+    /**
      * Returns a fake Danish phone number
      * 
      * @return string The fake phone number
