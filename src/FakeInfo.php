@@ -271,6 +271,16 @@ class FakeInfo {
     }
 
     /**
+     * Returns a fake Danish address
+     * 
+     * @return string The fake address
+     */
+    public function getAddress(): array
+    {
+        return ['address' => $this->address];
+    }
+
+    /**
      * Returns a fake Danish phone number
      * 
      * @return string The fake phone number
