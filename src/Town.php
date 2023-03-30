@@ -52,6 +52,6 @@ class Town extends DB
     }
 }
 
-echo '<pre>';
-$faketown = new Town;
-print_r($faketown->getRandomTown());
+// echo '<pre>';
+// $faketown = new Town;
+// print_r($faketown->getRandomTown());

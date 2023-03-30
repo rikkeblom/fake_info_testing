@@ -5,7 +5,7 @@
  * @author  Arturo Mora-Rioja
  * @version 1.0 August 2020
  */
-require_once '../info/Info.php';
+require_once 'info/Info.php';
 
 class DB {    
     protected object $pdo;
