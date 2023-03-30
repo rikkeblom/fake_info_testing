@@ -2,12 +2,6 @@
     "name": "rikkeblom/fake_info_testing",
     "description": "Web Application Testing: Mandatory Assignment 1",
     "license": "Unlicense",
-    "authors": [
-        {
-            "name": "Rikkeblom",
-            "email": "rikk957v@stud.kea.dk"
-        }
-    ],
     "require": {},
     "require-dev": {
         "phpunit/phpunit": "^9.5"
