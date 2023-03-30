@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Unit tests for full fake person
+ * Unit tests for getFakePerson
  * @author  Rikke Blom
  * @version  1.0, March 2023
  */
