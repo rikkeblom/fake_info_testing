@@ -12,7 +12,7 @@ class FakeInfo {
 
     public const GENDER_FEMININE = 'female';
     public const GENDER_MASCULINE = 'male';
-    private const FILE_PERSON_NAMES = 'data/person-names.json';
+    private const FILE_PERSON_NAMES = '../data/person-names.json';
     private const PHONE_PREFIXES = [
         '2', '30', '31', '40', '41', '42', '50', '51', '52', '53', '60', '61', '71', '81', '91', '92', '93', '342', 
         '344', '345', '346', '347', '348', '349', '356', '357', '359', '362', '365', '366', '389', '398', '431', 
@@ -334,3 +334,8 @@ class FakeInfo {
         return (string) mt_rand(0, 9);
     }
 }
+
+
+echo '<pre>';
+$fakeInfo = new FakeInfo;
+print_r($fakeInfo->getFakePersons());

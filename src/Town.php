@@ -51,3 +51,7 @@ class Town extends DB
         return $stmt->fetch();
     }
 }
+
+echo '<pre>';
+$faketown = new Town;
+print_r($faketown->getRandomTown());
