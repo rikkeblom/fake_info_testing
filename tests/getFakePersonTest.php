@@ -24,6 +24,7 @@ class getFakePersonTest extends TestCase {
     // we want to test if the public function get fake person
     // --TEST 1: Do we receive an associative array?
     // --TEST 2: Does the array contain the 7 keys (CPR, firstName, lastName, gender, birthDate, address, phoneNumber)?
+    // --TEST 3: Does the array contain any unwanted keys?
     
     // SHOULD WE MOCK? 
     // i don't think it make sense to mock in these tests as we would just be sending in arrays that we know would or would not fit our criteria.
