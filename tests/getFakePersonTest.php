@@ -22,13 +22,14 @@ class getFakePersonTest extends TestCase {
 
 
     // we want to test if the public function get fake person
-    // we should receive an associative array - so we should test if that is right 
-    // it should contain 7 keys (CPR, firstName, lastName, gender, birthDate, address, phoneNumber)
-    // @return array ['CPR' => value, 'firstName' => value, 'lastName' => value, 'gender' => 'female'|'male', 'birthDate' => value, 'phoneNumber' => value]
+    // --TEST 1: Do we receive an associative array?
+    // --TEST 2: Does the array contain the 7 keys (CPR, firstName, lastName, gender, birthDate, address, phoneNumber)?
     
     // SHOULD WE MOCK? 
-    // i don't think it make sense to mock in this test 
+    // i don't think it make sense to mock in these tests as we would just be sending in arrays that we know would or would not fit our criteria.
 
+
+    // TEST IF WE RECIEVE AN ARRAY
     public function test_if_array() {
         $result = gettype($this->fakeInfo->getFakePerson());
         $expected = 'array';
@@ -39,6 +40,7 @@ class getFakePersonTest extends TestCase {
     /**
      * @dataProvider provideArrayKey
      */
+    // TEST IF ALL THE WANTED KEYS ARE PRESENT
     public function test_if_array_contains_key($key, $expected) {
         $result = array_key_exists($key, $this->fakeInfo->getFakePerson());
         $this->assertEquals($expected, $result);
@@ -59,5 +61,15 @@ class getFakePersonTest extends TestCase {
             ['1', false],
             ['0', false], 
         ];
+    }
+
+    // TEST IF FOR UNWANTED KEYS
+    public function test_if_array_contains_unwanted_keys() {
+        $acceptedKeys = ['CPR'=>'', 'firstName'=>'', 'lastName'=>'', 'gender'=>'', 'birthDate'=>'', 'address'=>'', 'phoneNumber'=>''];
+        $fakePersonArray = $this->fakeInfo->getFakePerson();
+        forEach (array_keys($fakePersonArray) as $key){
+            $result = array_key_exists($key, $acceptedKeys);
+            $this->assertTrue($result);
+        }         
     }
 }
