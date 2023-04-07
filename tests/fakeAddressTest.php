@@ -18,7 +18,7 @@ class Test_get_Address extends testCase {
     // we want to test if the public function get fake person
     // --TEST 1: Do we receive an associative array?                                -- DONE --
     // --TEST 2: Check if array is empty                                            -- DONE --
-    // --TEST 3: Check if the array contains the right rows                         
+    // --TEST 3: Check if the array contains the right rows                         -- DONE --            
 
 
 
@@ -47,10 +47,9 @@ class Test_get_Address extends testCase {
      */
 
     // TEST IF THE "address" ARRAY HAS THE RIGHT ROWS
-/*
     public function test_if_array_has_rows($row, $expected) {
 
-        $result = array_key_exists($row, $this->fakeInfo->getAddress());
+        $result = array_key_exists($row, $this->fakeInfo->getAddress()['address']);
 
         $this->assertEquals($expected, $result);
     }
@@ -65,7 +64,7 @@ class Test_get_Address extends testCase {
             ['town_name', true]
         ];
     } 
-*/
+
 
 
 
