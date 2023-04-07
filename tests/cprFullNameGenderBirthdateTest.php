@@ -43,27 +43,46 @@ class TestgetCprFullNameGenderAndBirthDate extends testCase {
         $this->assertEquals($result, $expected);
     }
 
-    // public function testIndexs() {
-    //     $result = 0
+    // Testing if the keys we want are there
 
-    //     if (in_array('CPR') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('firstName') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('lastName') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('gender') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('birthDate') = true) {
-    //         $result = $result + 1;
-    //     }
+    // CPR
+    public function testCprKey() {
+        $result = in_array('CPR', $this->fakeInfo->getCprFullNameAndGender());
+        $expected = "true";
 
-    //     $expected = 5;
+        $this->assertEquals($result, $expected);
+    }
 
-    //     $this->assertEquals($result, $expected);
-    // }
+    // firstName
+    public function testFirstNameKey() {
+        $result = in_array('firstName', $this->fakeInfo->getCprFullNameAndGender());
+        $expected = "true";
+
+        $this->assertEquals($result, $expected);
+    }
+
+    // lastName
+    public function testLastNameKey() {
+        $result = in_array('lastName', $this->fakeInfo->getCprFullNameAndGender());
+        $expected = "true";
+
+        $this->assertEquals($result, $expected);
+    }
+
+    // gender
+    public function testGenderKey() {
+        $result = in_array('gender', $this->fakeInfo->getCprFullNameAndGender());
+        $expected = "true";
+
+        $this->assertEquals($result, $expected);
+    }
+
+    // birthDate
+    public function testBirthDateKey() {
+        $result = in_array('birthDate', $this->fakeInfo->getCprFullNameAndGender());
+        $expected = "true";
+
+        $this->assertEquals($result, $expected);
+    }
+
 }
