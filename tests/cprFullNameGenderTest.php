@@ -5,7 +5,7 @@ require_once 'src/FakeInfo.php';
 
 use PHPUnit\Framework\TestCase;
 
-class TestgetCprFullNameAndGender extends testCase {
+class TestgetCprFullNameGender extends testCase {
 
     private FakeInfo $testInfo;
     
@@ -16,8 +16,6 @@ class TestgetCprFullNameAndGender extends testCase {
         unset($this->fakeinfo);
     }
     
-    // const $testInfo = getCprFullNameAndGender();
-
     // Test we wanna do is 
     //  - Check if we get a array
     //  - Check if array is empty
@@ -31,40 +29,40 @@ class TestgetCprFullNameAndGender extends testCase {
         $this->assertEquals($result, $expected);
     }
 
-    // public function testIfEmpty() {
-    //     $result = empty($testInfo);
-    //     $expected = "false";
+    public function testIfEmpty() {
+        $result = empty($this->fakeInfo->getCprFullNameAndGender());
+        $expected = "false";
 
-    //     $this->assertEquals($result, $expected);
-    // }
+        $this->assertEquals($result, $expected);
+    }
 
-    // public function testArraySize() {
-    //     $result = sizeof($result);
-    //     $expected = 4;
+    public function testArraySize() {
+        $result = sizeof($this->fakeInfo->getCprFullNameAndGender());
+        $expected = 4;
 
-    //     $this->assertEquals($result, $expected);
-    // }
+        $this->assertEquals($result, $expected);
+    }
 
-    // public function testIndexs() {
-    //     $result = 0
+    public function testIndexs() {
+        $result = 0
 
-    //     if (in_array('CPR') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('firstName') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('lastName') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('gender') = true) {
-    //         $result = $result + 1;
-    //     }
+        if (in_array('CPR', $this->fakeInfo->getCprFullNameAndGender()) = true) {
+            $result = $result + 1;
+        }
+        if (in_array('firstName', $this->fakeInfo->getCprFullNameAndGender()) = true) {
+            $result = $result + 1;
+        }
+        if (in_array('lastName', $this->fakeInfo->getCprFullNameAndGender()) = true) {
+            $result = $result + 1;
+        }
+        if (in_array('gender', $this->fakeInfo->getCprFullNameAndGender()) = true) {
+            $result = $result + 1;
+        }
 
-    //     $expected = 4;
+        $expected = 4;
 
-    //     $this->assertEquals($result, $expected);
-    // }
+        $this->assertEquals($result, $expected);
+    }
 
 }
 
