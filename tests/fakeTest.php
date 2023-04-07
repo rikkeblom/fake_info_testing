@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class TestgetCprFullNameAndGender extends testCase {
 
-    $testInfo = getCprFullNameAndGender();
+    private $testInfo = getCprFullNameAndGender();
 
     // Test we wanna do is 
     //  - Check if we get a array
