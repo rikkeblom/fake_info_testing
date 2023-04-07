@@ -4,7 +4,7 @@ require_once 'src/FakeInfo.php';
 
 use PHPUnit\Framework\TestCase;
 
-class Test_get_Cpr_Address_Phone extends testCase {
+class Test_get_Cpr extends testCase {
 
     private FakeInfo $fakeInfo;
     public function setUp(): void {
@@ -16,17 +16,15 @@ class Test_get_Cpr_Address_Phone extends testCase {
     }
 
     // we want to test if the public function get fake person
-    // --TEST 1: Do we receive an associative array?                                -- DONE --
-    // --TEST 2: Check if array is empty                                            -- DONE --
-    // --TEST 3: Check if the array contains the rows "CPR ADDRESS PHONENUMBER"     -- DONE --
-    // --TEST 4: Check if address is an array                                       -- DONE --
-    // --TEST 5: Check if the array "address" has all its rows
+    // --TEST 1: Do we receive a strig?                                 -- DONE --
+    // --TEST 2: Check if string is empty                               -- DONE --
+    // --TEST 3: Check if the string contains the right format          -- DONE --
 
 
 
-    // TEST IF WE RECIVE AN ARRAY
-    public function testIfArray() {
-        $result = is_array($this->fakeInfo->getFakePerson());
+    // TEST IF "cpr" IS AN STRING
+    public function testIfString() {
+        $result = is_string($this->fakeInfo->getCpr());
         $expected = true;
 
         $this->assertEquals($result, $expected);
@@ -34,9 +32,9 @@ class Test_get_Cpr_Address_Phone extends testCase {
 
 
 
-    // TEST IF ARRAY IS EMPTY
+    // TEST IF "cpr" STRING IS EMPTY
     public function testIfEmpty() {
-        $result = empty($this->fakeInfo->getFakePerson());
+        $result = empty($this->fakeInfo->getCpr());
         $expected = false;
 
         $this->assertEquals($result, $expected);
@@ -45,33 +43,37 @@ class Test_get_Cpr_Address_Phone extends testCase {
 
 
     /**
-     * @dataProvider arrayRows
+     * @dataProvider cprNumber
      */
 
-    // TEST IF THE ARRAY HAS THE ROWS "CPR ADDRESS PHONE_NUMBER"
-    public function test_if_array_has_rows($row, $expected) {
+    // TEST IF THE "cpr" STRING FORMAT IS RIGHT
+    public function test_if_string_format($expected) {
 
-        $result = array_key_exists($row, $this->fakeInfo->getFakePerson());
+        $cpr = $this->fakeInfo->getCPR();
+
+        if (is_numeric($cpr) && strlen($cpr) === 10) { 
+            $result = true; 
+        } else { 
+            $result = false; 
+        }
 
         $this->assertEquals($expected, $result);
     }
 
-    public function arrayRows() {
+    public function cprNumber() {
         return [
-            ['CPR', true],  
-            ['address', true], 
-            ['phoneNumber', true],
+            ['jejejeejee', false],  
+            ['jejejeej98', false],  
+            ['03096426je', false],  
+            ['76jejeej98', false],  
+            ['03jej426je', false],  
+            ['0309e64260', false],  
+            [' 0309642692', false],  
+            ['0309642692 ', false],  
+            ['030964260', false],  
+            
+            ['0309642692', true],  
         ];
-    }
-
-
-
-    // TEST IF "address" IS AN ARRAY
-    public function test_if_address_is_array() {
-        $result = is_array($this->fakeInfo->getFakePerson('address'));
-        $expected = true;
-    
-        $this->assertEquals($result, $expected);
     }
 
 
