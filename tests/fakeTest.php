@@ -15,8 +15,8 @@ class TestgetCprFullNameAndGender extends testCase {
     public function tearDown(): void {
         unset($this->fakeinfo);
     }
-
-    // const $testInfo = getCprFullNameAndGender();
+    
+    const $testInfo = getCprFullNameAndGender();
 
     // Test we wanna do is 
     //  - Check if we get a array
@@ -25,7 +25,7 @@ class TestgetCprFullNameAndGender extends testCase {
     //  - Check if all the indexs are there 
 
     public function testIfArray() {
-        $result = is_array($testInfo);
+        $result = is_array($this->fakeInfo->getCprFullNameAndGender());
         $expected = "true";
 
         $this->assertEquals($result, $expected);
@@ -45,26 +45,26 @@ class TestgetCprFullNameAndGender extends testCase {
         $this->assertEquals($result, $expected);
     }
 
-    // public function testIndexs() {
-    //     $result = 0
+    public function testIndexs() {
+        $result = 0
 
-    //     if (in_array('CPR') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('firstName') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('lastName') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('gender') = true) {
-    //         $result = $result + 1;
-    //     }
+        if (in_array('CPR') = true) {
+            $result = $result + 1;
+        }
+        if (in_array('firstName') = true) {
+            $result = $result + 1;
+        }
+        if (in_array('lastName') = true) {
+            $result = $result + 1;
+        }
+        if (in_array('gender') = true) {
+            $result = $result + 1;
+        }
 
-    //     $expected = 4;
+        $expected = 4;
 
-    //     $this->assertEquals($result, $expected);
-    // }
+        $this->assertEquals($result, $expected);
+    }
 
 }
 
@@ -99,27 +99,27 @@ class TestgetCprFullNameGenderAndBirthDate extends testCase {
         $this->assertEquals($result, $expected);
     }
 
-    // public function testIndexs() {
-    //     $result = 0
+    public function testIndexs() {
+        $result = 0
 
-    //     if (in_array('CPR') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('firstName') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('lastName') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('gender') = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('birthDate') = true) {
-    //         $result = $result + 1;
-    //     }
+        if (in_array('CPR') = true) {
+            $result = $result + 1;
+        }
+        if (in_array('firstName') = true) {
+            $result = $result + 1;
+        }
+        if (in_array('lastName') = true) {
+            $result = $result + 1;
+        }
+        if (in_array('gender') = true) {
+            $result = $result + 1;
+        }
+        if (in_array('birthDate') = true) {
+            $result = $result + 1;
+        }
 
-    //     $expected = 5;
+        $expected = 5;
 
-    //     $this->assertEquals($result, $expected);
-    // }
+        $this->assertEquals($result, $expected);
+    }
 }
