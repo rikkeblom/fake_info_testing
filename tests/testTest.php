@@ -9,7 +9,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class TestTest extends TestCase {
+class testTest extends TestCase {
     public function testFake() {
         $result = 2 + 2;
         $expected = 4;
