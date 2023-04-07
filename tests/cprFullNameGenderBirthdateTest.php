@@ -5,7 +5,7 @@ require_once 'src/FakeInfo.php';
 
 use PHPUnit\Framework\TestCase;
 
-class TestgetCprFullNameGender extends testCase {
+class TestgetCprFullNameGenderAndBirthDate extends testCase {
 
     private FakeInfo $testInfo;
     
@@ -15,10 +15,10 @@ class TestgetCprFullNameGender extends testCase {
     public function tearDown(): void {
         unset($this->fakeinfo);
     }
-    
+
     // Test we wanna do is 
     //  - Check if we get a array
-    //  - Check if array is empty
+    //  - Check if array is empty   
     //  - Check if the array contains the number of indexs we expected
     //  - Check if all the indexs are there 
 
@@ -38,7 +38,7 @@ class TestgetCprFullNameGender extends testCase {
 
     public function testArraySize() {
         $result = sizeof($this->fakeInfo->getCprFullNameAndGender());
-        $expected = 4;
+        $expected = 5;
 
         $this->assertEquals($result, $expected);
     }
@@ -46,23 +46,24 @@ class TestgetCprFullNameGender extends testCase {
     // public function testIndexs() {
     //     $result = 0
 
-    //     if (in_array('CPR', $this->fakeInfo->getCprFullNameAndGender()) = true) {
+    //     if (in_array('CPR') = true) {
     //         $result = $result + 1;
     //     }
-    //     if (in_array('firstName', $this->fakeInfo->getCprFullNameAndGender()) = true) {
+    //     if (in_array('firstName') = true) {
     //         $result = $result + 1;
     //     }
-    //     if (in_array('lastName', $this->fakeInfo->getCprFullNameAndGender()) = true) {
+    //     if (in_array('lastName') = true) {
     //         $result = $result + 1;
     //     }
-    //     if (in_array('gender', $this->fakeInfo->getCprFullNameAndGender()) = true) {
+    //     if (in_array('gender') = true) {
+    //         $result = $result + 1;
+    //     }
+    //     if (in_array('birthDate') = true) {
     //         $result = $result + 1;
     //     }
 
-    //     $expected = 4;
+    //     $expected = 5;
 
     //     $this->assertEquals($result, $expected);
     // }
-
 }
-
