@@ -24,14 +24,12 @@ class TestgetCprFullNameGenderAndBirthDate extends testCase {
 
     public function testIfArray() {
         $result = is_array($this->fakeInfo->getCprFullNameGenderAndBirthDate());
-        $expected = "true";
 
-        $this->assertEquals($result, $expected);
+        $this->assertTrue($result);
     }
 
     public function testIfEmpty() {
         $result = empty($this->fakeInfo->getCprFullNameGenderAndBirthDate());
-        $expected = "false";
 
         $this->assertFalse($result);
     }
@@ -48,41 +46,36 @@ class TestgetCprFullNameGenderAndBirthDate extends testCase {
     // CPR
     public function testCprKey() {
         $result = in_array('CPR', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
-        $expected = "true";
 
-        $this->assertEquals($result, $expected);
+        $this->assertTrue($result);
     }
 
     // firstName
     public function testFirstNameKey() {
         $result = in_array('firstName', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
-        $expected = "true";
 
-        $this->assertEquals($result, $expected);
+        $this->assertTrue($result);
     }
 
     // lastName
     public function testLastNameKey() {
         $result = in_array('lastName', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
-        $expected = "true";
 
-        $this->assertEquals($result, $expected);
+        $this->assertTrue($result);
     }
 
     // gender
     public function testGenderKey() {
         $result = in_array('gender', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
-        $expected = "true";
 
-        $this->assertEquals($result, $expected);
+        $this->assertTrue($result);
     }
 
     // birthDate
     public function testBirthDateKey() {
         $result = in_array('birthDate', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
-        $expected = "true";
 
-        $this->assertEquals($result, $expected);
+        $this->assertTrue($result);
     }
 
 }
