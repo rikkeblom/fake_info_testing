@@ -7,7 +7,16 @@ use PHPUnit\Framework\TestCase;
 
 class TestgetCprFullNameAndGender extends testCase {
 
-    const $testInfo = getCprFullNameAndGender();
+    private FakeInfo $testInfo;
+    
+    public function setUp(): void {
+        $this->fakeInfo = FakeInfo;
+    }
+    public function tearDown(): void {
+        unset($this->fakeinfo);
+    }
+
+    // const $testInfo = getCprFullNameAndGender();
 
     // Test we wanna do is 
     //  - Check if we get a array
