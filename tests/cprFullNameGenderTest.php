@@ -43,26 +43,14 @@ class TestgetCprFullNameGender extends testCase {
         $this->assertEquals($result, $expected);
     }
 
-    // public function testIndexs() {
-    //     $result = 0
+    // Testing if the keys we want are there
 
-    //     if (in_array('CPR', $this->fakeInfo->getCprFullNameAndGender()) = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('firstName', $this->fakeInfo->getCprFullNameAndGender()) = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('lastName', $this->fakeInfo->getCprFullNameAndGender()) = true) {
-    //         $result = $result + 1;
-    //     }
-    //     if (in_array('gender', $this->fakeInfo->getCprFullNameAndGender()) = true) {
-    //         $result = $result + 1;
-    //     }
+    public function testCprKey() {
+        $result = in_array('CPR', $this->fakeInfo->getCprFullNameAndGender());
+        $expected = "true";
 
-    //     $expected = 4;
-
-    //     $this->assertEquals($result, $expected);
-    // }
+        $this->assertEquals($result, $expected);
+    }
 
 }
 
