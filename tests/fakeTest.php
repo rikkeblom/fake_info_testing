@@ -7,6 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class TestgetCprFullNameAndGender extends testCase {
 
+    const $testInfo = getCprFullNameAndGender();
+
     // Test we wanna do is 
     //  - Check if we get a array
     //  - Check if array is empty
@@ -14,7 +16,6 @@ class TestgetCprFullNameAndGender extends testCase {
     //  - Check if all the indexs are there 
 
     public function testIfArray() {
-        $testInfo = getCprFullNameAndGender();
         $result = is_array($testInfo);
         $expected = "true";
 
