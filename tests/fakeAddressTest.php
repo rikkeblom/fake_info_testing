@@ -24,7 +24,7 @@ class Test_get_Address extends testCase {
 
     // TEST IF "address" IS AN ARRAY
     public function testIfArray() {
-        $result = is_array($this->fakeInfo->getAddress());
+        $result = is_array($this->fakeInfo->getAddress()['address']);
         $expected = true;
 
         $this->assertEquals($result, $expected);
