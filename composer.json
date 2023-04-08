@@ -7,7 +7,7 @@
         "overtrue/phplint": "^9.0"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit tests",
+        "test": "vendor/bin/phpunit tests --coverage-html coverage --coverage-filter src/",
         "lint": "phplint --no-cache src/ tests/" 
     }
 }
