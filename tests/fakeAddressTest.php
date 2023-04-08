@@ -34,7 +34,7 @@ class Test_get_Address extends testCase {
 
     // TEST IF "address" ARRAY IS EMPTY
     public function testIfEmpty() {
-        $result = empty($this->fakeInfo->getAddress());
+        $result = empty($this->fakeInfo->getAddress()['address']);
         $expected = false;
 
         $this->assertEquals($result, $expected);
