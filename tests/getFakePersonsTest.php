@@ -42,10 +42,16 @@ class getFakePersonsTest extends TestCase {
 
     /**
      * @dataProvider provideArrayKey
+     * 
+     * Changed to version that looks through each fakePerson array in the fakePersons array 
+     * instead of just looking in the first one
      */
     public function test_if_array_contains_key($key, $expected) {
-        $result = array_key_exists($key, $this->fakeInfo->getFakePersons()[0]);
-        $this->assertEquals($expected, $result);
+        $resultArray = $this->fakeInfo->getFakePersons();
+        forEach ($resultArray as $array){
+            $result = array_key_exists($key, $array);
+            $this->assertEquals($expected, $result);
+        }
     }
 
     public function provideArrayKey() {
@@ -72,5 +78,15 @@ class getFakePersonsTest extends TestCase {
         $result = count($this->fakeInfo->getFakePersons($amount));
         
         $this->assertEquals($result, $expected);
+    }
+
+    // TEST IF FOR UNWANTED KEYS
+    public function test_if_array_contains_unwanted_keys() {
+        $acceptedKeys = ['CPR'=>'', 'firstName'=>'', 'lastName'=>'', 'gender'=>'', 'birthDate'=>'', 'address'=>'', 'phoneNumber'=>''];
+        $fakePersonArray = $this->fakeInfo->getFakePersons()[0];
+        forEach (array_keys($fakePersonArray) as $key){
+            $result = array_key_exists($key, $acceptedKeys);
+            $this->assertTrue($result);
+        }         
     }
 }
