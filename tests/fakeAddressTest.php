@@ -73,14 +73,28 @@ class Test_get_Address extends testCase {
 
 
 
+    // TEST IF THE "street" FORMAT IS RIGHT
+    public function test_street_format() {
+
+        $street = $this->fakeInfo->getAddress()['address']['street'];
+
+        if (strlen($street) === 40) { 
+            $result = true; 
+        } else { 
+            $result = false; 
+        }
+
+        $this->assertTrue($result);
+    }
+
+
+
     /**
      * @dataProvider formatStreetTest
      */
 
-    // TEST IF THE "street" FORMAT IS RIGHT
-/*    public function test_street_format($expected) {
-
-        $street = $this->fakeInfo->getAddress()['address']['street'];
+    // TEST IF OUR "street" FORMAT IS RIGHT
+    public function test_our_street_format($street, $expected) {
 
         if (strlen($street) === 40) { 
             $result = true; 
@@ -94,13 +108,13 @@ class Test_get_Address extends testCase {
     public function formatStreetTest() {
         return [
             ['ggggggggggmmmmmmmmmmkkkkkkkkkkwwwwwwww', false],  
-            ['ggggggggggmmmmmmmmmm kkkkkkkkkkuuuuuuuuuu', false],  
-            ['gggggggggg mmmmmmmmmmkkkkkkkkkkssssssssss', false],   
+            ['ggggggggggmmmmmmmmmmkkkkkkkkkkuuuuuuuuuu ', false],  
+            [' ggggggggggmmmmmmmmmmkkkkkkkkkkssssssssss', false],   
             
             ['ggggggggggmmmmmmmmmmkkkkkkkkkkqqqqqqqqqq', true],  
         ];
     }
-*/
+
 
 
 
