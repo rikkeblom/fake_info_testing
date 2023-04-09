@@ -7,13 +7,13 @@ use PHPUnit\Framework\TestCase;
 
 class TestgetCprFullNameGender extends testCase {
 
-    private FakeInfo $testInfo;
+    private FakeInfo $fakeInfo;
     
     public function setUp(): void {
-        $this->fakeInfo = FakeInfo;
+        $this->fakeInfo = new FakeInfo;
     }
     public function tearDown(): void {
-        unset($this->fakeinfo);
+        unset($this->fakeInfo);
     }
     
     // Test we wanna do is 
@@ -41,13 +41,18 @@ class TestgetCprFullNameGender extends testCase {
         $this->assertEquals($result, $expected);
     }
 
-    // Testing if the keys we want are there
+    // // Testing if the keys we want are there
 
     /**
-     * @dataProvider testkeysinarrayCprFullNameAndGender
+     * @dataProvider provideCprFullNameAndGender
      */
 
-     public function testkeysinarrayCprFullNameAndGender() {
+    public function testkeyCprFullNameAndGender($key) {
+        $result = array_key_exists($key, $this->fakeInfo->getCprFullNameAndGender());
+        $this->assertTrue($result);
+    }
+
+    public function provideCprFullNameAndGender() {
         return [
             ['CPR'],
             ['firstName'],
@@ -56,35 +61,30 @@ class TestgetCprFullNameGender extends testCase {
         ];
     }
 
-    public function testkeyCprFullNameAndGender($key) {
-        $result = in_array($key, $this->fakeinfo->getCprFullNameAndGender());
-        $this->assertTrue($result);
-    }
-
     // // CPR
     // public function testCprKey() {
-    //     $result = in_array('CPR', $this->fakeInfo->getCprFullNameAndGender());
+    //     $result = array_key_exists('CPR', $this->fakeInfo->getCprFullNameAndGender());
 
     //     $this->assertTrue($result);
     // }
 
     // // firstName
     // public function testFirstNameKey() {
-    //     $result = in_array('firstName', $this->fakeInfo->getCprFullNameAndGender());
+    //     $result = array_key_exists('firstName', $this->fakeInfo->getCprFullNameAndGender());
 
     //     $this->assertTrue($result);
     // }
 
     // // lastName
     // public function testLastNameKey() {
-    //     $result = in_array('lastName', $this->fakeInfo->getCprFullNameAndGender());
+    //     $result = array_key_exists('lastName', $this->fakeInfo->getCprFullNameAndGender());
 
     //     $this->assertTrue($result);
     // }
 
     // // gender
     // public function testGenderKey() {
-    //     $result = in_array('gender', $this->fakeInfo->getCprFullNameAndGender());
+    //     $result = array_key_exists('gender', $this->fakeInfo->getCprFullNameAndGender());
 
     //     $this->assertTrue($result);
     // }

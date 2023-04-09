@@ -7,13 +7,13 @@ use PHPUnit\Framework\TestCase;
 
 class TestgetCprFullNameGenderAndBirthDate extends testCase {
 
-    private FakeInfo $testInfo;
+    private FakeInfo $fakeInfo;
     
     public function setUp(): void {
-        $this->fakeInfo = FakeInfo;
+        $this->fakeInfo = new FakeInfo;
     }
     public function tearDown(): void {
-        unset($this->fakeinfo);
+        unset($this->fakeInfo);
     }
 
     // Test we wanna do is 
@@ -44,10 +44,15 @@ class TestgetCprFullNameGenderAndBirthDate extends testCase {
     // Testing if the keys we want are there
 
     /**
-     * @dataProvider testkeysinarrayCprFullNameAndGenderBirthdate
+     * @dataProvider provideCprFullNameAndGenderBirthDate
      */
 
-     public function testkeysinarrayCprFullNameAndGenderBirthDate() {
+    public function testkeyCprFullNameAndGenderBirthDate($key) {
+        $result = array_key_exists($key, $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+        $this->assertTrue($result);
+    }
+
+    public function provideCprFullNameAndGenderBirthDate() {
         return [
             ['CPR'],
             ['firstName'],
@@ -57,43 +62,37 @@ class TestgetCprFullNameGenderAndBirthDate extends testCase {
         ];
     }
 
-    public function testkeyCprFullNameAndGenderBirthDate($key) {
-        $result = in_array($key, $this->fakeinfo->getCprFullNameGenderAndBirthDate());
-        $this->assertTrue($result);
-    }
-
-
     // // CPR
     // public function testCprKey() {
-    //     $result = in_array('CPR', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+    //     $result = array_key_exists('CPR', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
 
     //     $this->assertTrue($result);
     // }
 
     // // firstName
     // public function testFirstNameKey() {
-    //     $result = in_array('firstName', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+    //     $result = array_key_exists('firstName', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
 
     //     $this->assertTrue($result);
     // }
 
     // // lastName
     // public function testLastNameKey() {
-    //     $result = in_array('lastName', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+    //     $result = array_key_exists('lastName', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
 
     //     $this->assertTrue($result);
     // }
 
     // // gender
     // public function testGenderKey() {
-    //     $result = in_array('gender', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+    //     $result = array_key_exists('gender', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
 
     //     $this->assertTrue($result);
     // }
 
     // // birthDate
     // public function testBirthDateKey() {
-    //     $result = in_array('birthDate', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+    //     $result = array_key_exists('birthDate', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
 
     //     $this->assertTrue($result);
     // }
