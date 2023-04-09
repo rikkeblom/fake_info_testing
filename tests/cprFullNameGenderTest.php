@@ -71,5 +71,23 @@ class TestgetCprFullNameGender extends testCase {
         $this->assertTrue($result);
     }
 
+    /**
+     * @dataProvider testkeysinarrayCprFullNameAndGender
+     */
+
+    public function testkeysinarrayCprFullNameAndGender() {
+        return [
+            ['CPR'],
+            ['firstName'],
+            ['lastName'],
+            ['gender']
+        ];
+    }
+
+    public function testkeyCprFullNameAndGender($key) {
+        $result = in_array($key, $this->fakeinfo->getCprFullNameAndGender());
+        $this->assertTrue($result);
+    }
+
 }
 
