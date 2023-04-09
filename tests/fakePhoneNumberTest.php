@@ -26,9 +26,8 @@ class Test_get_phone_number extends testCase {
     // TEST IF "phone_number" IS AN STRING
     public function testIfString() {
         $result = is_string($this->fakeInfo->getPhoneNumber());
-        $expected = true;
 
-        $this->assertEquals($result, $expected);
+        $this->assertTrue($result);
     }
 
 
@@ -36,9 +35,8 @@ class Test_get_phone_number extends testCase {
     // TEST IF "phone_number" STRING IS EMPTY
     public function testIfEmpty() {
         $result = empty($this->fakeInfo->getPhoneNumber());
-        $expected = false;
 
-        $this->assertEquals($result, $expected);
+        $this->assertFalse($result);
     }
 
 

@@ -117,7 +117,7 @@ class FakeInfo {
         if (mt_rand(1, 10) < 4) {
             $this->address['floor'] = 'st';
         } else {
-            $this->address['floor'] = mt_rand(1, 99);
+            $this->address['floor'] = (string) mt_rand(1, 99);
         }
 
         /*

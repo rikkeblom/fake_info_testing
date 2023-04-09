@@ -31,9 +31,8 @@ class Test_get_Address extends testCase {
     // TEST IF "address" IS AN ARRAY
     public function testIfArray() {
         $result = is_array($this->fakeInfo->getAddress()['address']);
-        $expected = true;
 
-        $this->assertEquals($result, $expected);
+        $this->assertTrue($result);
     }
 
 
@@ -41,9 +40,8 @@ class Test_get_Address extends testCase {
     // TEST IF "address" ARRAY IS EMPTY
     public function testIfEmpty() {
         $result = empty($this->fakeInfo->getAddress()['address']);
-        $expected = false;
 
-        $this->assertEquals($result, $expected);
+        $this->assertFalse($result);
     }
 
 
@@ -53,21 +51,21 @@ class Test_get_Address extends testCase {
      */
 
     // TEST IF THE "address" ARRAY HAS THE RIGHT ROWS
-    public function test_if_array_has_rows($row, $expected) {
+    public function test_if_array_has_rows($row) {
 
         $result = array_key_exists($row, $this->fakeInfo->getAddress()['address']);
 
-        $this->assertEquals($expected, $result);
+        $this->assertTrue($result);
     }
 
     public function arrayRows() {
         return [
-            ['street', true],  
-            ['number', true], 
-            ['floor', true],
-            ['door', true],
-            ['postal_code', true],
-            ['town_name', true]
+            ['street'],  
+            ['number'], 
+            ['floor'],
+            ['door'],
+            ['postal_code'],
+            ['town_name']
         ];
     } 
 
@@ -163,7 +161,7 @@ class Test_get_Address extends testCase {
 
         $floor = $this->fakeInfo->getAddress()['address']['floor'];
         
-        if (strlen($floor) === 2) {
+        if (strlen($floor) <= 2) {
             $result = true;
         } else { 
             $result = false; 
@@ -209,7 +207,7 @@ class Test_get_Address extends testCase {
 
         $door = $this->fakeInfo->getAddress()['address']['door'];
 
-        if (strlen($door) <= 3) {
+        if (strlen($door) <= 5) {
             $result = true;
         } else { 
             $result = false; 

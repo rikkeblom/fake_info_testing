@@ -25,9 +25,8 @@ class Test_get_Cpr extends testCase {
     // TEST IF "cpr" IS AN STRING
     public function testIfString() {
         $result = is_string($this->fakeInfo->getCpr());
-        $expected = true;
 
-        $this->assertEquals($result, $expected);
+        $this->assertTrue($result);
     }
 
 
@@ -35,9 +34,8 @@ class Test_get_Cpr extends testCase {
     // TEST IF "cpr" STRING IS EMPTY
     public function testIfEmpty() {
         $result = empty($this->fakeInfo->getCpr());
-        $expected = false;
 
-        $this->assertEquals($result, $expected);
+        $this->assertFalse($result);
     }
 
 
