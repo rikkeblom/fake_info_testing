@@ -23,8 +23,8 @@ class Test_get_Address extends testCase {
     // --TEST 5: Check if the "number" is the right format                          -- DONE --
     // --TEST 6: Check if the "floor" is the right format                           -- DONE --
     // --TEST 7: Check if the "door" is the right format                            -- DONE --
-    // --TEST 8: Check if the "postal_code" is the right format                     --  --
-    // --TEST 9: Check if the "town_name" is the right format                       --  --
+    // --TEST 8: Check if the "postal_code" is the right format                     -- DONE --
+    // --TEST 9: Check if the "town_name" is the right format                       -- DONE --
 
 
 
@@ -242,6 +242,57 @@ class Test_get_Address extends testCase {
             ['857', true],  
         ];
     }
+
+
+
+    // TEST IF THE "postal_code" FORMAT IS RIGHT
+    public function test_postal_code_format() {
+
+        $postal_code = $this->fakeInfo->getAddress()['address']['postal_code'];
+    
+        if (is_numeric($postal_code) && strlen($postal_code) === 4) {
+            $result = true;
+        } else { 
+            $result = false; 
+        }
+    
+        $this->assertTrue($result);
+    }
+
+
+
+    // TEST IF "town_name" IS AN STRING
+    public function testIfString() {
+        $result = is_string($this->fakeInfo->getAddress()['address']['town_name']);
+    
+        $this->assertTrue($result);
+    }
+
+
+
+    // TEST IF "town_name" STRING IS EMPTY
+    public function testIfStringEmpty() {
+        $result = empty($this->fakeInfo->getAddress()['address']['town_name']);
+    
+        $this->assertFalse($result);
+    }
+
+
+
+    // TEST IF THE "town_name" FORMAT IS RIGHT
+    public function test_town_name_format() {
+
+        $town_name = $this->fakeInfo->getAddress()['address']['town_name'];
+        
+        if (strlen($town_name) !== 100) {
+            $result = true;
+        } else { 
+            $result = false; 
+        }
+        
+        $this->assertTrue($result);
+    }
+
 
 
 }
