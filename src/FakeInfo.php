@@ -329,8 +329,9 @@ class FakeInfo {
     }
 }
 
-/*
-echo '<pre>';
-$fakeInfo = new FakeInfo;
-print_r(strlen($fakeInfo->getAddress()['address']['number']));
-*/
+
+
+// echo '<pre>';
+// $fakeInfo = new FakeInfo;
+// print_r($fakeInfo->getFakePersons());
+
