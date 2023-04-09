@@ -43,39 +43,11 @@ class TestgetCprFullNameGender extends testCase {
 
     // Testing if the keys we want are there
 
-    // CPR
-    public function testCprKey() {
-        $result = in_array('CPR', $this->fakeInfo->getCprFullNameAndGender());
-
-        $this->assertTrue($result);
-    }
-
-    // firstName
-    public function testFirstNameKey() {
-        $result = in_array('firstName', $this->fakeInfo->getCprFullNameAndGender());
-
-        $this->assertTrue($result);
-    }
-
-    // lastName
-    public function testLastNameKey() {
-        $result = in_array('lastName', $this->fakeInfo->getCprFullNameAndGender());
-
-        $this->assertTrue($result);
-    }
-
-    // gender
-    public function testGenderKey() {
-        $result = in_array('gender', $this->fakeInfo->getCprFullNameAndGender());
-
-        $this->assertTrue($result);
-    }
-
     /**
      * @dataProvider testkeysinarrayCprFullNameAndGender
      */
 
-    public function testkeysinarrayCprFullNameAndGender() {
+     public function testkeysinarrayCprFullNameAndGender() {
         return [
             ['CPR'],
             ['firstName'],
@@ -88,6 +60,36 @@ class TestgetCprFullNameGender extends testCase {
         $result = in_array($key, $this->fakeinfo->getCprFullNameAndGender());
         $this->assertTrue($result);
     }
+
+    // // CPR
+    // public function testCprKey() {
+    //     $result = in_array('CPR', $this->fakeInfo->getCprFullNameAndGender());
+
+    //     $this->assertTrue($result);
+    // }
+
+    // // firstName
+    // public function testFirstNameKey() {
+    //     $result = in_array('firstName', $this->fakeInfo->getCprFullNameAndGender());
+
+    //     $this->assertTrue($result);
+    // }
+
+    // // lastName
+    // public function testLastNameKey() {
+    //     $result = in_array('lastName', $this->fakeInfo->getCprFullNameAndGender());
+
+    //     $this->assertTrue($result);
+    // }
+
+    // // gender
+    // public function testGenderKey() {
+    //     $result = in_array('gender', $this->fakeInfo->getCprFullNameAndGender());
+
+    //     $this->assertTrue($result);
+    // }
+
+
 
 }
 

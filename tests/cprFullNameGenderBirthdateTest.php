@@ -43,39 +43,59 @@ class TestgetCprFullNameGenderAndBirthDate extends testCase {
 
     // Testing if the keys we want are there
 
-    // CPR
-    public function testCprKey() {
-        $result = in_array('CPR', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+    /**
+     * @dataProvider testkeysinarrayCprFullNameAndGenderBirthdate
+     */
 
+     public function testkeysinarrayCprFullNameAndGenderBirthDate() {
+        return [
+            ['CPR'],
+            ['firstName'],
+            ['lastName'],
+            ['gender'],
+            ['birthDate']
+        ];
+    }
+
+    public function testkeyCprFullNameAndGenderBirthDate($key) {
+        $result = in_array($key, $this->fakeinfo->getCprFullNameGenderAndBirthDate());
         $this->assertTrue($result);
     }
 
-    // firstName
-    public function testFirstNameKey() {
-        $result = in_array('firstName', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
 
-        $this->assertTrue($result);
-    }
+    // // CPR
+    // public function testCprKey() {
+    //     $result = in_array('CPR', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
 
-    // lastName
-    public function testLastNameKey() {
-        $result = in_array('lastName', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+    //     $this->assertTrue($result);
+    // }
 
-        $this->assertTrue($result);
-    }
+    // // firstName
+    // public function testFirstNameKey() {
+    //     $result = in_array('firstName', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
 
-    // gender
-    public function testGenderKey() {
-        $result = in_array('gender', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+    //     $this->assertTrue($result);
+    // }
 
-        $this->assertTrue($result);
-    }
+    // // lastName
+    // public function testLastNameKey() {
+    //     $result = in_array('lastName', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
 
-    // birthDate
-    public function testBirthDateKey() {
-        $result = in_array('birthDate', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+    //     $this->assertTrue($result);
+    // }
 
-        $this->assertTrue($result);
-    }
+    // // gender
+    // public function testGenderKey() {
+    //     $result = in_array('gender', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+
+    //     $this->assertTrue($result);
+    // }
+
+    // // birthDate
+    // public function testBirthDateKey() {
+    //     $result = in_array('birthDate', $this->fakeInfo->getCprFullNameGenderAndBirthDate());
+
+    //     $this->assertTrue($result);
+    // }
 
 }
