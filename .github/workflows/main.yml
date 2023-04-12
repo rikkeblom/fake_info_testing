@@ -8,6 +8,9 @@ jobs:
     services:
       mysql:
         image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: addresses
 
     steps:
     - uses: actions/checkout@v2
