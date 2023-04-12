@@ -12,7 +12,7 @@ class FakeInfo {
 
     public const GENDER_FEMININE = 'female';
     public const GENDER_MASCULINE = 'male';
-    private const FILE_PERSON_NAMES = '../data/person-names.json';
+    private const FILE_PERSON_NAMES = 'data/person-names.json';
     private const PHONE_PREFIXES = [
         '2', '30', '31', '40', '41', '42', '50', '51', '52', '53', '60', '61', '71', '81', '91', '92', '93', '342', 
         '344', '345', '346', '347', '348', '349', '356', '357', '359', '362', '365', '366', '389', '398', '431', 
@@ -105,7 +105,7 @@ class FakeInfo {
      */
     private function setAddress(): void
     {
-        $this->address['street'] = self::getRandomText(40);
+        $this->address['street'] = self::getRandomText($length = 40);
 
         $this->address['number'] = (string) mt_rand(1, 999);
         // Approx. 20% of Danish addresses includes a letter
@@ -117,7 +117,7 @@ class FakeInfo {
         if (mt_rand(1, 10) < 4) {
             $this->address['floor'] = 'st';
         } else {
-            $this->address['floor'] = mt_rand(1, 99);
+            $this->address['floor'] = (string) mt_rand(1, 99);
         }
 
         /*
@@ -163,24 +163,18 @@ class FakeInfo {
      * @param  int    Length of the text to return (1 by default)
      * @return string The random text
      */
-    private static function getRandomText(int $length = 1, bool $includeDanishCharacters = true): string
-    {
-        $validCharacters = [
-            ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 
-            'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 
-            'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 
-            'Y', 'Z'
-        ];
+    private static function getRandomText(int $length = 10, bool $includeDanishCharacters = true) {
+        $characters = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         if ($includeDanishCharacters) {
-            $validCharacters = array_merge($validCharacters, ['æ', 'ø', 'å', 'Æ', 'Ø', 'Å']);
+            $characters = $characters .'æøåÆØÅ';
         }
 
-        // The first character is chosen from position 1 to avoid the space
-        $text = $validCharacters[mt_rand(1, count($validCharacters) - 1)];
-        for ($index = 1; $index < $length; $index++) {
-            $text .= $validCharacters[mt_rand(0, count($validCharacters) - 1)];
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
-        return $text;
+        return $randomString;
     }
 
     /**
@@ -336,6 +330,8 @@ class FakeInfo {
 }
 
 
-echo '<pre>';
-$fakeInfo = new FakeInfo;
-print_r($fakeInfo->getFakePersons());
+
+// echo '<pre>';
+// $fakeInfo = new FakeInfo;
+// print_r($fakeInfo->getFakePersons());
+
