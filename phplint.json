@@ -1,0 +1,32 @@
+{
+    "status": "success",
+    "failures": [],
+    "time_usage": "< 1 sec",
+    "memory_usage": "6.0 MiB",
+    "cache_usage": "0 hit, 13 misses",
+    "files_count": 13,
+    "options_used": {
+        "path": [
+            "src/",
+            "tests/"
+        ],
+        "configuration": ".phplint.yml",
+        "no-configuration": false,
+        "exclude": [
+            "vendor"
+        ],
+        "extensions": [
+            "php"
+        ],
+        "jobs": 10,
+        "no-cache": true,
+        "cache": ".phplint.cache",
+        "no-progress": false,
+        "progress": "printer",
+        "log-json": "phplint.json",
+        "log-junit": false,
+        "warning": true,
+        "memory-limit": -1,
+        "ignore-exit-code": false
+    }
+}
