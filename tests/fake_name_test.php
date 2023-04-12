@@ -1,7 +1,4 @@
 <?php
-
-
-
 use PHPUnit\Framework\TestCase;
 
 require_once 'src/FakeInfo.php';
@@ -28,11 +25,12 @@ class Fake_Full_Name_Test extends TestCase {
     }
 
 
+
     public function testIfEmpty() {
         $result = empty($this->fakeInfo->getFullNameGender());
-
         $this->assertFalse($result);
     }
+
 
     public function testArraySize() {
         $result = sizeof($this->fakeInfo->getFullNameGender());
@@ -49,6 +47,7 @@ class Fake_Full_Name_Test extends TestCase {
 
     public function testkeyFullNameAndGender($key) {
         $result = array_key_exists($key, $this->fakeInfo->getFullNameGender());
+
         $this->assertTrue($result);
     }
 
@@ -60,9 +59,6 @@ class Fake_Full_Name_Test extends TestCase {
             
         ];
     }
-    
-
-
 
 
 
