@@ -1,0 +1,13 @@
+path:
+  - src/
+  - tests/
+extensions:
+  - php
+exclude:
+  - vendor
+jobs: 10
+warning: true
+memory-limit: -1
+no-cache: false
+log-json: phplint.json
+log-junit: false
