@@ -25,6 +25,11 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Prepare Laravel Application
+      run: |
+        cp .env.ci .env
+        php artisan key:generate
+
     - name: Lint PHP files
       run: composer run-script lint
 
