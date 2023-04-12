@@ -36,7 +36,7 @@ class TestgetFullNameGenderAndBirthDate extends testCase {
 
     public function testArraySize() {
         $result = sizeof($this->fakeInfo->getFullNameGenderAndBirthDate());
-        $expected = 5;
+        $expected = 4;
 
         $this->assertEquals($result, $expected);
     }

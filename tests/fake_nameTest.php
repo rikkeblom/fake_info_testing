@@ -27,14 +27,14 @@ class Fake_Full_Name_Test extends TestCase {
 
 
     public function testIfEmpty() {
-        $result = empty($this->fakeInfo->getFullNameGender());
+        $result = empty($this->fakeInfo->getFullNameAndGender());
         $this->assertFalse($result);
     }
 
 
     public function testArraySize() {
-        $result = sizeof($this->fakeInfo->getFullNameGender());
-        $expected = 5;
+        $result = sizeof($this->fakeInfo->getFullNameAndGender());
+        $expected = 3;
 
         $this->assertEquals($result, $expected);
     }
@@ -46,7 +46,7 @@ class Fake_Full_Name_Test extends TestCase {
      */
 
     public function testkeyFullNameAndGender($key) {
-        $result = array_key_exists($key, $this->fakeInfo->getFullNameGender());
+        $result = array_key_exists($key, $this->fakeInfo->getFullNameAndGender());
 
         $this->assertTrue($result);
     }
