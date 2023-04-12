@@ -11,6 +11,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: addresses
+        ports:
+          - 33306:3306
 
     steps:
     - uses: actions/checkout@v2
