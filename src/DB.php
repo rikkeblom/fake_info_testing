@@ -21,7 +21,7 @@ class DB {
         ];
 
         try {
-            $this->pdo = @new PDO('sqlite:'.__DIR__.'../addresses.db', Info::USER, Info::PASSWORD, $options); 
+            $this->pdo = @new PDO($dsn, Info::USER, Info::PASSWORD, $options); 
         } catch (\PDOException $e) {
             echo 'Connection unsuccessful';
             die('Connection unsuccessful: ' . $e->getMessage());
