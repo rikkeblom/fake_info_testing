@@ -46,7 +46,7 @@ class Test_get_phone_number extends testCase {
      */
 
     // TEST IF THE "phone_number" STRING FORMAT IS RIGHT
-    public function test_if_string_format($expected) {
+    public function test_if_string_format() {
 
         $phoneNumber = $this->fakeInfo->getPhoneNumber();
 
@@ -56,23 +56,7 @@ class Test_get_phone_number extends testCase {
             $result = false; 
         }
 
-        $this->assertEquals($expected, $result);
-    }
-
-    public function phoneNumber() {
-        return [
-            ['jejejeej', false],  
-            ['jejeje98', false],  
-            ['030966je', false],  
-            ['76jeej98', false],  
-            ['03j426je', false],  
-            ['0309e642', false],  
-            [' 03096426', false],  
-            ['03096426 ', false],  
-            ['0309642', false],  
-            
-            ['03096426', true],  
-        ];
+        $this->assertTrue($result);
     }
 
 
