@@ -31,7 +31,7 @@ class Fake_Full_Name_Test extends TestCase {
     public function TestIfemptiy() {
         $result = is_array($this->fakeInfo->getFullNameAndGender());
 
-        $this->assertTrue($result);
+        $this->assertFalse($result);
     }
 
 
@@ -40,7 +40,7 @@ class Fake_Full_Name_Test extends TestCase {
         $expected = 5;
 
 
-        $this->assertTrue($result);
+        $this->assertEquals($result, $expected);
     }
 
 
@@ -50,6 +50,22 @@ class Fake_Full_Name_Test extends TestCase {
         $expected = 10;
 
         $this->assertTrue($result);
+    }
+
+
+
+    public function testkeyFullNameAndGender($key) {
+        $result = array_key_exists($key, $this->fakeInfo->getFullNameAndGender());
+        $this->assertTrue($result);
+    }
+
+    public function provideFullNameAndGender() {
+        return [
+            
+            ['firstName'],
+            ['lastName'],
+            ['gender']
+        ];
     }
 
 
