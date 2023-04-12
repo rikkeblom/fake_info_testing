@@ -4,17 +4,6 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: kirschbaumdevelopment/laravel-test-runner:7.3
-    
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: addresses
-        ports:
-          - 33306:3306
 
     steps:
     - uses: actions/checkout@v2
