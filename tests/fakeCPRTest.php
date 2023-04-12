@@ -45,7 +45,7 @@ class Test_get_Cpr extends testCase {
      */
 
     // TEST IF THE "cpr" STRING FORMAT IS RIGHT
-    public function test_if_string_format($expected) {
+    public function test_if_string_format() {
 
         $cpr = $this->fakeInfo->getCPR();
 
@@ -55,23 +55,7 @@ class Test_get_Cpr extends testCase {
             $result = false; 
         }
 
-        $this->assertEquals($expected, $result);
-    }
-
-    public function cprNumber() {
-        return [
-            ['jejejeejee', false],  
-            ['jejejeej98', false],  
-            ['03096426je', false],  
-            ['76jejeej98', false],  
-            ['03jej426je', false],  
-            ['0309e64260', false],  
-            [' 0309642692', false],  
-            ['0309642692 ', false],  
-            ['030964260', false],  
-            
-            ['0309642692', true],  
-        ];
+        $this->assertTrue($result);
     }
 
 
