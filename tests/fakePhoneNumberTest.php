@@ -41,10 +41,6 @@ class Test_get_phone_number extends testCase {
 
 
 
-    /**
-     * @dataProvider phoneNumber
-     */
-
     // TEST IF THE "phone_number" STRING FORMAT IS RIGHT
     public function test_if_string_format() {
 
