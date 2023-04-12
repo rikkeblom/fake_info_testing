@@ -40,10 +40,6 @@ class Test_get_Cpr extends testCase {
 
 
 
-    /**
-     * @dataProvider cprNumber
-     */
-
     // TEST IF THE "cpr" STRING FORMAT IS RIGHT
     public function test_if_string_format() {
 
