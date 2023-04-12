@@ -284,7 +284,7 @@ class Test_get_Address extends testCase {
 
         $town_name = $this->fakeInfo->getAddress()['address']['town_name'];
         
-        if (strlen($town_name) < 40) {
+        if (strlen($town_name) < 25) {
             $result = true;
         } else { 
             $result = false; 
